@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="잰잇 해빗">
+<meta name="theme-color" content="#ededeb">
+<title>잰잇 해빗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font-size:14px}
+/* Layout: one-column phone app — date strip, grouped habit cards, bottom sheet editor, report screen */
+:root{
+  --bg:#ededeb; --outer:#c9cbc4; --surface:#f7f7f5; --line:#e2e2de; --fg:#1d1d1b; --muted:#8c8c86; --dot:#dcdcd8;
+  --display:"Gowun Dodum",ui-rounded,"Apple SD Gothic Neo",system-ui,sans-serif;
+  --body:"Gowun Dodum",ui-rounded,"Apple SD Gothic Neo",system-ui,sans-serif;
+}
+:root,:root[data-theme]{color-scheme:light}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--outer);color:var(--fg);font-family:var(--body);-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.wrap{background:var(--bg);min-height:100vh;max-width:430px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 120px}
+.top{display:flex;align-items:center;gap:10px;padding-block:8px}
+.top h1{font-family:var(--display);font-weight:400;font-size:32px;margin:0;line-height:1;cursor:pointer;letter-spacing:-.01em;white-space:nowrap}
+.chip{border:2px solid var(--fg);border-radius:8px;font-weight:700;font-size:12px;line-height:1.2;padding:2px 8px;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .sp{flex:1}
+.ib{width:40px;height:40px;display:grid;place-items:center;border-radius:12px}
+.chip.on{background:var(--fg);color:var(--bg)}
+.ib svg{width:24px;height:24px}
+.strip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-inline:-4px;padding:12px 4px 6px}
+.strip::-webkit-scrollbar{display:none}
+.day{flex:0 0 44px;height:50px;border:2px solid var(--line);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--muted)}
+.day b{font-family:var(--display);font-size:20px;font-weight:400;line-height:1}
+.day small{font-size:10px}
+.day.sel{border:2px solid var(--fg);color:var(--fg)}
+.day.today:not(.sel) b{color:var(--fg)}
+.grp{margin-top:18px}
+.gh{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:19px;font-weight:400;padding:4px 2px 8px;width:100%;text-align:left}
+.gh svg{width:16px;height:16px;transition:transform .2s}
+.grp.closed .gh svg{transform:rotate(-90deg)}
+.ghr{display:flex;align-items:center}
+.ghr .gh{flex:1;min-width:0}
+.more{width:40px;height:36px;display:grid;place-items:center;color:var(--muted)}
+.more svg{width:22px;height:22px}
+.popov{position:fixed;inset:0;z-index:29}
+.pop{position:fixed;z-index:30;background:#30353d;color:#fff;border-radius:16px;padding:6px;min-width:210px;box-shadow:0 14px 40px rgb(0 0 0 / .28);animation:pop .14s ease-out;transform-origin:top right}
+@keyframes pop{from{opacity:0;transform:scale(.94)}}
+@media (prefers-reduced-motion:reduce){.pop{animation:none}}
+.pop button{display:flex;gap:14px;align-items:center;width:100%;padding:12px 14px;border-radius:10px;font-size:17px;font-weight:700;text-align:left;font-family:var(--body)}
+.pop button:active,.pop button:hover{background:rgb(255 255 255 / .08)}
+.pop svg{width:22px;height:22px;flex:none;color:#6aa8ec}
+.pop .danger.arm{background:#d64545}
+.pop .danger.arm svg{color:#fff}
+.grp.closed .list{display:none}
+.list{display:flex;flex-direction:column;gap:4px}
+.card{display:flex;align-items:center;gap:12px;background:var(--c);color:var(--ink);border-radius:22px;padding:10px 14px;min-height:64px;cursor:pointer}
+.card.rest{opacity:.5}
+.chk{touch-action:manipulation;-webkit-user-select:none;user-select:none;flex:0 0 32px;height:32px;border-radius:50%;border:2.5px solid color-mix(in srgb,var(--ink) 40%,transparent);background:conic-gradient(color-mix(in srgb,var(--ink) 55%,transparent) var(--p,0deg),transparent 0);display:grid;place-items:center;transition:transform .12s}
+.chk:active{transform:scale(.9)}
+.chk svg{width:16px;height:16px;opacity:0}
+.chk.done{background:var(--ink);border-color:var(--ink)}
+.chk.done svg{opacity:1}
+.txt{flex:1;min-width:0}
+.nm{font-size:19px;line-height:1.25;overflow-wrap:anywhere}
+.sub{font-size:13px;opacity:.88;margin-top:2px;font-variant-numeric:tabular-nums}
+.card .go{opacity:.6;font-size:20px}
+@media (min-width:480px){.wrap{min-height:calc(100vh - 48px);margin-block:24px;border-radius:36px;box-shadow:0 20px 60px rgb(40 45 35 / .18),0 0 0 1px rgb(0 0 0 / .04)}}
+.empty{margin-top:56px;text-align:center;color:var(--muted);line-height:1.7}
+.empty b{display:block;font-family:var(--display);font-size:28px;color:var(--fg)}
+.btn{background:var(--fg);color:var(--bg);border-radius:999px;padding:12px 22px;font-weight:700;margin-top:16px}
+.note{margin-top:28px;text-align:center;font-size:12px;color:var(--muted)}
+/* sheet */
+.ov{position:fixed;inset:0;background:rgb(0 0 0 / .35);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:430px;max-height:94%;border-radius:28px 28px 0 0;display:flex;flex-direction:column;animation:up .25s ease}
+@keyframes up{from{transform:translateY(40px);opacity:.4}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.sh{display:flex;align-items:center;gap:8px;padding:14px max(16px,env(safe-area-inset-right,0px)) 6px max(16px,env(safe-area-inset-left,0px))}
+.sh h2{font-size:24px;margin:
