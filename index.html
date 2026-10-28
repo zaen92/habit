@@ -82,4 +82,585 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 @keyframes up{from{transform:translateY(40px);opacity:.4}}
 @media (prefers-reduced-motion:reduce){.sheet{animation:none}}
 .sh{display:flex;align-items:center;gap:8px;padding:14px max(16px,env(safe-area-inset-right,0px)) 6px max(16px,env(safe-area-inset-left,0px))}
-.sh h2{font-size:24px;margin:
+.sh h2{font-size:24px;margin:0;font-weight:700}
+.sb{overflow-y:auto;padding:4px max(16px,env(safe-area-inset-right,0px)) 120px max(16px,env(safe-area-inset-left,0px))}
+.nameBox{background:var(--c);border-radius:16px;padding:22px 14px;margin-top:8px}
+.nameBox input{width:100%;border:0;background:transparent;color:var(--ink);font:inherit;font-size:24px;text-align:center}
+.nameBox input::placeholder{color:var(--ink);opacity:.55}
+.nameBox input:focus{outline:none}
+.lbl{font-weight:700;font-size:19px;margin:26px 0 12px;display:flex;align-items:center;gap:8px}
+.lbl small{font-weight:400;font-size:12px;color:var(--muted)}
+.sws{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.sw{aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--c);display:grid;place-items:center;position:relative;overflow:hidden}
+.sw svg{width:46%;height:46%;opacity:0}
+.sw.on svg{opacity:1}
+.sw input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.sw.pick{background:conic-gradient(#e35858,#ecbc46,#bee05f,#4fa25a,#6ac4d7,#4485c4,#5c6ca8,#be75cf,#e35858)}
+.sw.rand{background:var(--fg);color:var(--bg);font-size:18px}
+.dows{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.dw{aspect-ratio:1;border-radius:50%;background:var(--surface);color:var(--muted);font-size:14px}
+.dw.on{background:var(--fg);color:var(--bg);font-weight:700}
+.field{background:var(--surface);border-radius:14px;width:100%;border:0;font:inherit;font-size:16px;padding:14px;color:var(--fg)}
+select.field{text-align:center;text-align-last:center;appearance:none}
+.row{display:flex;gap:10px;align-items:center}
+.row .field{flex:1;font-variant-numeric:tabular-nums}
+.step{display:flex;background:var(--line);border-radius:999px}
+.step button{width:52px;height:46px;font-size:22px}
+.step button+button{border-left:1px solid color-mix(in srgb,var(--fg) 20%,transparent)}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
+.del{margin-top:30px;width:100%;padding:14px;border-radius:14px;color:#d64545;background:var(--surface);font-weight:700}
+.del.arm{background:#d64545;color:#fff}
+.save{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));width:min(60%,260px);padding:15px;border-radius:999px;background:var(--fg);color:var(--bg);font-weight:700;font-size:17px;box-shadow:0 8px 24px rgb(0 0 0 / .18)}
+.save:disabled{background:var(--line);color:var(--muted);box-shadow:none}
+.sheet{position:relative}
+/* report */
+.rtop{display:flex;align-items:center;gap:8px;padding-block:6px}
+.back{width:40px;height:40px;border-radius:50%;background:var(--surface);display:grid;place-items:center;box-shadow:0 2px 10px rgb(0 0 0 / .06)}
+.back svg{width:18px;height:18px}
+.rh{font-family:var(--body);font-weight:700;font-size:30px;margin:14px 0 0;line-height:1.15;letter-spacing:-.01em}
+.rs{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:15px;margin-top:6px;font-variant-numeric:tabular-nums}
+.rs button{width:30px;height:30px;border-radius:50%;background:var(--surface);font-size:15px}
+.rs button:disabled{opacity:.35}
+.rs span{flex:1}
+.rg{margin-top:22px}
+.rg h3{font-size:15px;margin:0 0 8px;font-weight:400}
+.tbl{background:var(--surface);border-radius:16px;overflow:hidden}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) repeat(7,minmax(26px,34px));align-items:center;border-top:1px solid var(--line)}
+.tr:first-child{border-top:0}
+.tr>*{height:36px;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line);font-size:12px}
+.tr>:first-child{justify-content:flex-start;border-left:0;padding-left:12px;padding-right:6px;font-size:13px;min-width:0}
+.tr>:first-child span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr.hd>*{height:32px;color:var(--fg)}
+.d{width:20px;height:20px;border-radius:50%;background:var(--dot)}
+.d.off{width:8px;height:3px;border-radius:2px}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:10px}
+.mc{background:var(--surface);border-radius:18px;padding:12px}
+.mc .t{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc .n{font-size:12px;color:var(--muted);margin:2px 0 8px;font-variant-numeric:tabular-nums}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal i{aspect-ratio:1;border-radius:5px;background:var(--dot)}
+.cal i.x{background:transparent}
+.cal i.off{opacity:.35}
+.yr{background:var(--surface);border-radius:18px;padding:12px 12px 10px;margin-bottom:8px}
+.yr .t{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-bottom:8px}
+.yr .t span:last-child{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.yscroll{overflow-x:auto;scrollbar-width:thin}
+.ygrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,9px);grid-auto-columns:9px;gap:2px;width:max-content}
+.ygrid i{border-radius:2px;background:var(--dot)}
+.ygrid i.x{background:transparent}
+.seg{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;background:color-mix(in srgb,var(--line) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:999px;padding:4px;box-shadow:0 6px 24px rgb(0 0 0 / .12);z-index:5}
+.seg button{padding:9px 16px;border-radius:999px;font-family:var(--body);font-size:15px;font-weight:700}
+.seg button.on{background:var(--surface)}
+.sheet.tall{height:92%}
+#layer2 .ov{z-index:25}
+.sh3{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px;padding:14px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.sh3 h2{margin:0;text-align:center;font-size:19px;font-weight:700}
+.cbtn{width:44px;height:44px;border-radius:50%;background:var(--surface);display:grid;place-items:center}
+.cbtn svg,.plus svg{width:22px;height:22px}
+.plus{width:44px;height:44px;border-radius:50%;background:#5bbfee;color:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgb(91 191 238 / .4)}
+.gl-row{display:flex;align-items:center;gap:6px;width:100%;border-bottom:1px solid var(--line);min-height:58px;font-size:18px;text-align:left}
+button.gl-row{justify-content:space-between;padding:0 6px}
+button.gl-row svg{width:22px;height:22px}
+.gl-in{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:18px;color:var(--fg);padding:12px 6px;border-radius:10px}
+.gl-in:focus{outline:none;background:var(--surface)}
+.gl-b{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--muted);flex:none}
+.gl-b svg{width:20px;height:20px}
+.gl-b:disabled{opacity:.3}
+.gl-b.arm{width:auto;padding:0 12px;background:#d64545;color:#fff;font-size:14px}
+.gl-b.add{width:auto;padding:0 16px;background:var(--fg);color:var(--bg);font-size:15px}
+.opts{display:flex;flex-direction:column;margin-top:8px}
+.opt{display:flex;align-items:center;gap:16px;padding:16px 6px;font-size:19px;color:var(--muted);text-align:left}
+.opt svg,.opt i{width:24px;height:24px;flex:none}
+.opt.on{color:var(--fg);font-weight:700}
+button.field{text-align:center}
+.bnav{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:max(16px,calc(50% - 199px));display:flex;gap:2px;background:var(--surface);border-radius:999px;padding:6px;box-shadow:0 6px 24px rgb(0 0 0 / .14);z-index:5}
+.bnav button{width:56px;height:46px;border-radius:999px;display:grid;place-items:center}
+.bnav button.on{background:var(--line)}
+.bnav svg{width:25px;height:25px}
+.rcard{background:var(--surface);border-radius:24px;padding:20px;margin-top:12px}
+.rcard h4{font-family:var(--display);font-size:30px;margin:0;font-weight:400}
+.donut{display:block;width:min(100%,280px);margin:16px auto 8px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:13px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;flex:none}
+.big{font-family:var(--display);font-size:54px;line-height:1;font-variant-numeric:tabular-nums}
+.big+p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.sth{font-family:var(--display);font-size:30px;font-weight:700;margin:32px 0 4px}
+.st-row{padding:14px 0;border-bottom:1px solid var(--line)}
+.st-row:last-child{border-bottom:0}
+.st-row .t{font-size:15px;display:flex;justify-content:space-between;gap:8px}
+.st-row .t small{color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.st-bar{display:flex;align-items:center;gap:12px;margin-top:8px}
+.st-track{flex:1;height:9px;border-radius:5px;background:var(--dot)}
+.st-fill{height:100%;border-radius:5px;min-width:9px}
+.st-bar b{font-weight:400;color:var(--muted);width:2.2em;text-align:right;font-variant-numeric:tabular-nums}
+.toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top,0px));background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;z-index:40}
+</style>
+
+</head>
+<body>
+<div id="app" class="wrap"></div>
+<div id="layer"></div>
+<div id="layer2"></div>
+
+<script>
+window.onerror=function(m,src,l,c){try{var t=document.getElementById('errbox')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'errbox'}));t.style.cssText='position:fixed;left:12px;right:12px;bottom:90px;z-index:99;background:#d64545;color:#fff;padding:10px 12px;border-radius:12px;font:12px/1.4 monospace;white-space:pre-wrap';t.textContent='오류: '+m+' ('+l+':'+c+')'}catch(_){}};
+window.addEventListener('unhandledrejection',function(e){window.onerror(String(e.reason&&e.reason.message||e.reason),'',0,0)});
+(()=>{
+const DOW=['일','월','화','수','목','금','토'];
+const COLORS=['#BCCBB7','#F6DC72','#A3CADB','#E8B4BC','#E39782','#B07095','#DE8C98','#98D3D4','#E35858','#ECBC46','#4485C4','#BEE05F','#BE75CF','#58AE9B','#5C6CA8','#4FA25A','#CE4537','#3A4C7C','#EB7432','#7EC8AF','#6AC4D7','#9B673C','#C53E8A','#454545'];
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const app=document.getElementById('app'), layer=document.getElementById('layer'), layer2=document.getElementById('layer2');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const key=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=k=>{const[a,b,c]=k.split('-').map(Number);return new Date(a,b-1,c)};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const ymOf=k=>k.slice(0,7);
+const TODAY=key(new Date());
+function ink(hex){const n=parseInt(hex.slice(1),16);const L=(0.299*(n>>16&255)+0.587*(n>>8&255)+0.114*(n&255))/255;return L>0.72?'#3a3a32':'#ffffff'}
+const uid=()=>Math.random().toString(36).slice(2,9);
+
+/* ---------- storage: db when available, this-device copy otherwise ---------- */
+const LS='jaenit-habit-v1:';
+const lsGet=k=>{try{return JSON.parse(localStorage.getItem(LS+k))}catch(e){return null}};
+const lsSet=(k,v)=>{try{localStorage.setItem(LS+k,JSON.stringify(v))}catch(e){}};
+let db=null, dbChecked=false;
+async function readDoc(name){
+  if(db){try{const s=await db.doc('habit/'+name).get();const v=s.exists?s.data():null;if(v)lsSet(name,v);return v}catch(e){}}
+  return lsGet(name);
+}
+const pend={},chain={};
+function writeDoc(name,val){
+  lsSet(name,val); if(!db) return;
+  clearTimeout(pend[name]);
+  pend[name]=setTimeout(()=>{
+    chain[name]=(chain[name]||Promise.resolve()).then(()=>db.doc('habit/'+name).set(val)).catch(()=>toast('저장하지 못했어요. 연결을 확인해 주세요'));
+  },400);
+}
+
+let state=lsGet('state');
+if(!state){state={"groups": [{"id": "g1", "name": "Healthy"}, {"id": "g2", "name": "Control"}, {"id": "g3", "name": "Exercise"}], "habits": [{"id": "h1", "name": "🛏️ > 6시간", "color": "#BCCBB7", "group": "g1", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h2", "name": "💊 비타민", "color": "#BCCBB7", "group": "g1", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h3", "name": "💧 1L 마시기", "color": "#BCCBB7", "group": "g1", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h4", "name": "💧 기상 직후 물 한 잔 마시기", "color": "#F6DC72", "group": "g2", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h5", "name": "🚫 취침 4시간 전 공복 유지하기", "color": "#F6DC72", "group": "g2", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h6", "name": "🍺 nonalchol", "color": "#F6DC72", "group": "g2", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h7", "name": "💪 스쿼트 60번", "color": "#A3CADB", "group": "g3", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h8", "name": "필라테스 🧘", "color": "#DE8C98", "group": "g3", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}, {"id": "h9", "name": "🏃 유산소", "color": "#A3CADB", "group": "g3", "days": [0, 1, 2, 3, 4, 5, 6], "target": 1}]};lsSet('state',state);lsSet('m-2026-10',{days:{'2026-10-15':{h2:1}}})}
+const months={};
+async function ensureMonths(list){
+  await Promise.all([...new Set(list)].filter(m=>!months[m]).map(async m=>{const v=await readDoc('m-'+m);months[m]=(v&&v.days)||{}}));
+}
+let dirtyState=false;const dirty={};
+const saveState=()=>{if(!dbChecked)dirtyState=true;writeDoc('state',state)};
+const saveMonth=m=>writeDoc('m-'+m,{days:months[m]||{}});
+
+const getCount=(id,k)=>(months[ymOf(k)]?.[k]?.[id])||0;
+function setCount(id,k,n){
+  const m=ymOf(k); months[m]=months[m]||{}; const day=months[m][k]=months[m][k]||{};
+  if(n>0) day[id]=n; else delete day[id];
+  if(!Object.keys(day).length) delete months[m][k];
+  if(!dbChecked){dirty[m]=dirty[m]||{};dirty[m][k]=months[m][k]?{...months[m][k]}:null}
+  saveMonth(m);
+}
+const target=h=>Math.max(1,h.target||1);
+const done=(h,k)=>getCount(h.id,k)>=target(h);
+const sched=(h,k)=>(!h.days||h.days.includes(parse(k).getDay()))&&(!h.created||k>=h.created)&&k<=TODAY;
+
+function streak(h,k){
+  let d=parse(k),n=0; if(!done(h,k)) d=addDays(d,-1);
+  for(let i=0;i<400;i++){const kk=key(d); if(!months[ymOf(kk)]||(h.created&&kk<h.created)) break;
+    if(sched(h,kk)){if(done(h,kk)) n++; else break} d=addDays(d,-1)}
+  return n;
+}
+function lastDone(h,k){
+  const keys=[];for(const m in months) for(const kk in months[m]) if(kk<=k&&(months[m][kk][h.id]||0)>=target(h)) keys.push(kk);
+  return keys.sort().pop();
+}
+function subText(h,k){
+  const c=getCount(h.id,k),t=target(h),pre=t>1?`${Math.min(c,t)}/${t}회 · `:'';
+  const s=streak(h,k);
+  if(c>=t) return pre+(s>1?`${s}일 연속`:'완료');
+  if(s>0) return pre+`${s}일 연속 중`;
+  const ld=lastDone(h,k); if(!ld) return pre+'체크인 없음';
+  const diff=Math.round((parse(k)-parse(ld))/864e5);
+  return pre+(diff===1?'어제 체크':diff<7?`${diff}일 전 체크`:`최근 ${parse(ld).getMonth()+1}월 ${parse(ld).getDate()}일`);
+}
+
+/* ---------- view ---------- */
+const view={dayOnly:!!lsGet('dayOnly'),date:TODAY,filter:'ALL',screen:'main',tab:'weekly',ref:TODAY};
+let closed=lsGet('closed')||{};
+const groupsWithHabits=()=>state.groups.filter(g=>state.habits.some(h=>h.group===g.id));
+
+function render(){ view.screen==='main'?renderMain():view.screen==='review'?renderReview():renderReport() }
+
+function renderMain(){
+  const k=view.date, d=parse(k);
+  const days=[];for(let i=41;i>=0;i--) days.push(key(addDays(parse(TODAY),-i)));
+  const gs=groupsWithHabits();
+  const fname=view.dayOnly?`${DOW[d.getDay()]}요일`:'ALL';
+  const onDay=h=>!h.days||h.days.includes(d.getDay());
+  let body='';
+  if(!state.habits.length){
+    body=`<div class="empty"><b>첫 습관을 추가해볼까요</b>물 마시기, 스트레칭처럼 매일 체크할 걸 하나 정해보세요.<br><button class="btn" data-a="add">습관 추가</button></div>`;
+  }else{
+    for(const g of gs){
+      const hs=state.habits.filter(h=>h.group===g.id&&(!h.created||k>=h.created)&&(!view.dayOnly||onDay(h)));
+      if(!hs.length) continue;
+      body+=`<section class="grp ${closed[g.id]?'closed':''}"><div class="ghr"><button class="gh" data-a="fold" data-g="${g.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>${esc(g.name)}</button><button class="more" data-a="gmenu" data-g="${g.id}" aria-label="${esc(g.name)} 메뉴" aria-haspopup="menu"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button></div><div class="list">`;
+      for(const h of hs){
+        const c=getCount(h.id,k),t=target(h),dn=c>=t;
+        body+=`<div class="card${onDay(h)?'':' rest'}" style="--c:${h.color};--ink:${ink(h.color)}" data-a="edit" data-id="${h.id}">
+          <button class="chk ${dn?'done':''}" style="--p:${dn?0:Math.round(c/t*360)}deg;color:${h.color}" data-a="tick" data-id="${h.id}" aria-label="${esc(h.name)} 체크"${k>TODAY?' disabled':''}>${CHECK}</button>
+          <div class="txt"><div class="nm">${esc(h.name)}</div><div class="sub">${esc(subText(h,k))}</div></div><span class="go" aria-hidden="true">›</span></div>`;
+      }
+      body+='</div></section>';
+    }
+    if(!body) body=`<div class="empty"><b>이 날은 쉬는 날</b>이 요일에 표시되는 습관이 없어요.</div>`;
+  }
+  app.innerHTML=`<div class="top"><h1 data-a="today" title="오늘로">${d.getMonth()+1}월 ${d.getDate()}일</h1><button class="chip${view.dayOnly?' on':''}" data-a="filter" aria-pressed="${!!view.dayOnly}" title="ALL: 모든 습관 / 요일: 그 요일에 할 습관만">${esc(fname)}</button><span class="sp"></span>
+    <button class="ib" data-a="review" aria-label="활동 리뷰"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="13" width="5" height="8" rx="1.5"/><rect x="9.5" y="8" width="5" height="13" rx="1.5"/><rect x="16" y="3" width="5" height="18" rx="1.5"/></svg></button>
+    <button class="ib" data-a="add" aria-label="습관 추가"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg></button>
+    <button class="ib" data-a="tmenu" aria-label="메뉴" aria-haspopup="menu"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/></svg></button></div>
+    <div class="strip" id="strip">${days.map(x=>{const dd=parse(x);return `<button class="day ${x===k?'sel':''} ${x===TODAY?'today':''}" data-a="date" data-k="${x}"><small>${DOW[dd.getDay()]}</small><b>${dd.getDate()}</b></button>`}).join('')}</div>
+    ${body}
+    <nav class="bnav"><button class="on" data-a="today" aria-label="오늘">${IC.cal2}</button><button data-a="report" aria-label="주간·월간·연간 리포트">${IC.grid}</button></nav>`;
+  const st=document.getElementById('strip'), sel=st.querySelector('.sel');
+  if(sel) st.scrollLeft=sel.offsetLeft-st.clientWidth+sel.offsetWidth+8;
+}
+
+/* ---------- report ---------- */
+function weekStart(k){const d=parse(k);return addDays(d,-d.getDay())}
+function cellStyle(h,k){
+  if(!sched(h,k)) return k>TODAY?'':'off';
+  const c=getCount(h.id,k),t=target(h);
+  if(c>=t) return `background:${h.color}`;
+  if(c>0) return `background:color-mix(in srgb,${h.color} 40%,var(--dot))`;
+  return '';
+}
+async function renderReport(){
+  const ref=parse(view.ref); let need=[],title,range,html='';
+  const gs=groupsWithHabits().filter(g=>!view.rgroup||g.id===view.rgroup);
+  const rg=view.rgroup&&state.groups.find(g=>g.id===view.rgroup);
+  if(view.tab==='weekly'){
+    const s=weekStart(view.ref),e=addDays(s,6); need=[key(s),key(e)].map(ymOf);
+    await ensureMonths(need);
+    title='Weekly Report'; range=`${s.getFullYear()}년 ${s.getMonth()+1}월 ${s.getDate()}일 – ${e.getMonth()!==s.getMonth()?e.getMonth()+1+'월 ':''}${e.getDate()}일`;
+    const ks=[...Array(7)].map((_,i)=>key(addDays(s,i)));
+    for(const g of gs){
+      const hs=state.habits.filter(h=>h.group===g.id);
+      html+=`<section class="rg"><h3>${esc(g.name)}</h3><div class="tbl"><div class="tr hd"><div></div>${DOW.map(x=>`<div>${x}</div>`).join('')}</div>`;
+      for(const h of hs){
+        const n=ks.filter(k=>done(h,k)).length, gl=goalOf(h), goal=gl&&gl.per==='week'?` <span style="color:var(--muted);font-size:12px;flex:none;margin-left:6px">${n}/${gl.n}</span>`:'';
+        html+=`<div class="tr"><div><span>${esc(h.name)}</span>${goal}</div>${ks.map(k=>{const c=cellStyle(h,k);return `<div><i class="d ${c==='off'?'off':''}" style="${c!=='off'?c:''}"></i></div>`}).join('')}</div>`;
+      }
+      html+='</div></section>';
+    }
+  }else if(view.tab==='monthly'){
+    const y=ref.getFullYear(),m=ref.getMonth(),dim=new Date(y,m+1,0).getDate(),lead=new Date(y,m,1).getDay();
+    need=[`${y}-${pad(m+1)}`]; await ensureMonths(need);
+    title='Monthly Report'; range=`${y}년 ${m+1}월`;
+    for(const g of gs){
+      html+=`<section class="rg"><h3>${esc(g.name)}</h3><div class="mgrid">`;
+      for(const h of state.habits.filter(h=>h.group===g.id)){
+        let cells='<i class="x"></i>'.repeat(lead),sc=0,dn=0;
+        for(let i=1;i<=dim;i++){const k=`${y}-${pad(m+1)}-${pad(i)}`;const c=cellStyle(h,k);if(sched(h,k)){sc++;if(done(h,k))dn++}
+          cells+=`<i class="${c==='off'?'off':''}" style="${c!=='off'?c:''}" title="${m+1}/${i}"></i>`}
+        html+=`<div class="mc"><div class="t">${esc(h.name)}</div><div class="n">${dn}일 · ${sc?Math.round(dn/sc*100):0}%</div><div class="cal">${cells}</div></div>`;
+      }
+      html+='</div></section>';
+    }
+  }else{
+    const y=ref.getFullYear(); need=[...Array(12)].map((_,i)=>`${y}-${pad(i+1)}`); await ensureMonths(need);
+    title='Yearly Report'; range=`${y}년`;
+    const start=addDays(new Date(y,0,1),-new Date(y,0,1).getDay()), end=new Date(y,11,31);
+    for(const g of gs){
+      html+=`<section class="rg"><h3>${esc(g.name)}</h3>`;
+      for(const h of state.habits.filter(h=>h.group===g.id)){
+        let cells='',dn=0,sc=0;
+        for(let d=new Date(start);d<=end;d=addDays(d,1)){const k=key(d);
+          if(d.getFullYear()!==y){cells+='<i class="x"></i>';continue}
+          if(sched(h,k)){sc++;if(done(h,k))dn++}
+          const c=cellStyle(h,k);cells+=`<i style="${c&&c!=='off'?c:''}${c==='off'?'opacity:.35':''}"></i>`}
+        html+=`<div class="yr"><div class="t"><span>${esc(h.name)}</span><span>${dn}일 · ${sc?Math.round(dn/sc*100):0}%</span></div><div class="yscroll"><div class="ygrid">${cells}</div></div></div>`;
+      }
+      html+='</section>';
+    }
+  }
+  if(!gs.length) html='<div class="empty"><b>아직 기록이 없어요</b>습관을 추가하고 체크하면 여기에 쌓여요.</div>';
+  const nextRef=shiftRef(1), canNext=nextRef<=TODAY||view.tab==='weekly'&&key(weekStart(nextRef))<=TODAY;
+  app.innerHTML=`<div class="rtop"><button class="back" data-a="home" aria-label="뒤로"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button></div>
+    <h2 class="rh">${title}</h2><div class="rs"><span>${range}</span><button data-a="prev" aria-label="이전">‹</button><button data-a="next" aria-label="다음"${canNext?'':' disabled'}>›</button></div>${rg?`<button class="chip" style="margin-top:12px" data-a="rall">${esc(rg.name)} ✕</button>`:''}${html}
+    <nav class="seg">${['weekly','monthly','yearly'].map(t=>`<button class="${view.tab===t?'on':''}" data-a="tab" data-t="${t}">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}</nav>`;
+  if(view.tab==='yearly') app.querySelectorAll('.yscroll').forEach(s=>s.scrollLeft=s.scrollWidth);
+}
+function shiftRef(dir){
+  const r=parse(view.ref);
+  if(view.tab==='weekly') return key(addDays(r,7*dir));
+  if(view.tab==='monthly') return key(new Date(r.getFullYear(),r.getMonth()+dir,1));
+  return key(new Date(r.getFullYear()+dir,0,1));
+}
+
+/* ---------- editor sheet ---------- */
+let f=null;
+function openSheet(h,gid){
+  const g0=state.groups.find(g=>g.id===gid)||state.groups.find(g=>view.filter!=='ALL'&&g.id===view.filter)||state.groups[0];
+  f=h?{...h,days:h.days?[...h.days]:[0,1,2,3,4,5,6],target:target(h),goal:goalOf(h)}
+     :{id:null,name:'',color:COLORS[6],days:[0,1,2,3,4,5,6],group:g0?.id||null,target:1,goal:null};
+  f.delArm=false; drawSheet();
+}
+function drawSheet(){
+  const ik=ink(f.color), custom=!COLORS.includes(f.color);
+  layer.innerHTML=`<div class="ov" data-a="close"><div class="sheet" role="dialog" aria-label="습관 편집">
+    <div class="sh"><button class="ib" data-a="close" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><h2>${f.id?'Edit Activity':'New Activity'}</h2></div>
+    <div class="sb">
+      <div class="nameBox" style="--c:${f.color};--ink:${ik}"><input id="f-name" maxlength="40" placeholder="필라테스 🧘" value="${esc(f.name)}" autocomplete="off"></div>
+      <div class="lbl">Colors</div>
+      <div class="sws">${COLORS.map(c=>`<button class="sw ${c===f.color?'on':''}" style="--c:${c};color:${ink(c)}" data-a="color" data-c="${c}" aria-label="색 ${c}">${CHECK}</button>`).join('')}
+        <label class="sw pick ${custom?'on':''}" style="${custom?`background:${f.color};color:${ik}`:''}" aria-label="직접 고르기">${CHECK}<input id="f-pick" type="color" value="${f.color.toLowerCase()}"></label>
+        <button class="sw rand" data-a="rand" aria-label="랜덤 색">?</button></div>
+      <div class="lbl">Display On <small>체크할 요일</small></div>
+      <div class="dows">${DOW.map((x,i)=>`<button class="dw ${f.days.includes(i)?'on':''}" data-a="dow" data-i="${i}">${x}</button>`).join('')}</div>
+      <div class="lbl">Group</div>
+      <button class="field" data-a="pickgroup">${esc(state.groups.find(g=>g.id===f.group)?.name||'그룹 선택')}</button>
+      <div class="lbl">Goal <small>리포트에 표시</small></div>
+      <button class="field" data-a="pickgoal">${goalLabel(f.goal)}</button>
+      <div class="lbl">Daily Checkin <small>하루 몇 번 눌러야 완료</small></div>
+      <div class="row"><input class="field" readonly value="${f.target}" aria-label="하루 체크 횟수"><div class="step"><button data-a="tgt" data-d="-1" aria-label="줄이기">−</button><button data-a="tgt" data-d="1" aria-label="늘리기">+</button></div></div>
+      <p class="hint">물 8잔처럼 여러 번 채우는 습관은 횟수를 늘려두세요. 동그라미를 누를 때마다 한 칸씩 차요.</p>
+      ${f.id?`<button class="del ${f.delArm?'arm':''}" data-a="del">${f.delArm?'한 번 더 누르면 기록까지 삭제돼요':'이 습관 삭제'}</button>`:''}
+    </div>
+    <button class="save" data-a="save" ${canSave()?'':'disabled'}>저장</button>
+  </div></div>`;
+  const nm=document.getElementById('f-name');
+  nm.addEventListener('input',e=>{f.name=e.target.value;document.querySelector('.save').disabled=!canSave()});
+  document.getElementById('f-pick').addEventListener('input',e=>{f.color=e.target.value.toUpperCase();keepScroll(drawSheet)});
+}
+function keepScroll(fn){const sb=document.querySelector('.sb'),y=sb?sb.scrollTop:0;fn();const s2=document.querySelector('.sb');if(s2)s2.scrollTop=y}
+const canSave=()=>f.name.trim()&&f.days.length&&state.groups.some(g=>g.id===f.group);
+function saveSheet(){
+  if(!canSave()) return;
+  const rec={id:f.id||uid(),name:f.name.trim(),color:f.color,group:f.group,days:[...f.days].sort(),target:f.target,goal:f.goal||null};
+  if(f.id){const i=state.habits.findIndex(h=>h.id===f.id);rec.created=state.habits[i].created;state.habits[i]=rec}
+  else{rec.created=view.date<TODAY?view.date:TODAY;state.habits.push(rec)}
+  saveState(); closeSheet(); render(); toast(f.id?'수정했어요':'추가했어요');
+}
+function closeSheet(){layer.innerHTML='';layer2.innerHTML='';f=null}
+
+let tt;function toast(msg){clearTimeout(tt);let t=document.querySelector('.toast');if(!t){t=document.createElement('div');t.className='toast';t.setAttribute('role','status');document.body.appendChild(t)}t.textContent=msg;tt=setTimeout(()=>t.remove(),1800)}
+
+/* ---------- events ---------- */
+try{window.__habitAC&&window.__habitAC.abort()}catch(_){}
+/* tap log so problems on a phone can be read back */
+let dbg=[],dbgT=null;
+function dlog(){}
+let lastPT=0,down=null;
+function doTick(id,why){
+  const h=state.habits.find(x=>x.id===id); if(!h||view.date>TODAY) return;
+  const now=Date.now(); if(window.__lastTick&&window.__lastTick.id===id&&now-window.__lastTick.t<450){dlog('skip',null,null,id);return}
+  window.__lastTick={id,t:now};
+  const c=getCount(h.id,view.date),n=c>=target(h)?0:c+1;
+  setCount(h.id,view.date,n); dlog('tick',null,null,id+' '+c+'→'+n+' '+why);
+  try{navigator.vibrate&&navigator.vibrate(8)}catch(_){} render();
+}
+const AC=window.__habitAC=new AbortController();
+let lastTick=0;
+window.addEventListener('click',async e=>{
+  const el=e.target.closest&&e.target.closest('[data-a]'); if(!el) return;
+  e.stopPropagation();
+  {const d=el.dataset,kk=(d.a||'')+'|'+(d.id||d.g||d.i||d.c||d.p||d.t||d.k||d.d||''),now=Date.now(),last=window.__habitTap||{};
+   if(last.k===kk&&now-last.t<700) return; window.__habitTap={k:kk,t:now};}
+  const a=el.dataset.a;
+  if((a==='close'||a==='close2')&&el.classList.contains('ov')&&e.target!==el) return;
+  if(a==='tick'){ doTick(el.dataset.id,'click'); return }
+  switch(a){
+    case 'date': view.date=el.dataset.k; await ensureMonths([ymOf(view.date),ymOf(key(addDays(parse(view.date),-31)))]); render(); break;
+    case 'today': view.date=TODAY; render(); break;
+    case 'filter': view.dayOnly=!view.dayOnly; lsSet('dayOnly',view.dayOnly); render(); break;
+    case 'fold': closed[el.dataset.g]=!closed[el.dataset.g]; lsSet('closed',closed); render(); break;
+    case 'add': openSheet(null); break;
+    case 'edit': openSheet(state.habits.find(x=>x.id===el.dataset.id)); break;
+    case 'report': layer.innerHTML=''; view.rgroup=null; view.screen='report'; view.ref=view.date; window.scrollTo(0,0); render(); break;
+    case 'home': view.screen='main'; render(); break;
+    case 'tab': view.tab=el.dataset.t; render(); break;
+    case 'prev': view.ref=shiftRef(-1); render(); break;
+    case 'next': view.ref=shiftRef(1); render(); break;
+    case 'close': closeSheet(); break;
+    case 'color': f.color=el.dataset.c; keepScroll(drawSheet); break;
+    case 'rand': f.color='#'+[0,0,0].map(()=>Math.floor(70+Math.random()*170).toString(16).padStart(2,'0')).join('').toUpperCase(); keepScroll(drawSheet); break;
+    case 'dow':{const i=+el.dataset.i;f.days=f.days.includes(i)?f.days.filter(x=>x!==i):[...f.days,i];keepScroll(drawSheet);break}
+    case 'tgt': f.target=Math.min(20,Math.max(1,f.target+ +el.dataset.d)); keepScroll(drawSheet); break;
+    case 'del':
+      if(!f.delArm){f.delArm=true;keepScroll(drawSheet);break}
+      state.habits=state.habits.filter(h=>h.id!==f.id); saveState(); closeSheet(); render(); toast('삭제했어요'); break;
+    case 'save': saveSheet(); break;
+    case 'gmenu': menuArm=false; openMenu(el.dataset.g,el); break;
+    case 'mclose': closeMenu(); break;
+    case 'gcal':{const g=menuG;closeMenu();view.screen='report';view.tab='monthly';view.ref=view.date;view.rgroup=g;window.scrollTo(0,0);render();break}
+    case 'gadd':{const g=menuG;closeMenu();openSheet(null,g);break}
+    case 'gren': renameSheet(); break;
+    case 'gsave':{const v=document.getElementById('g-name').value.trim();const g=state.groups.find(x=>x.id===menuG);if(g&&v){g.name=v;saveState()}closeSheet();menuG=null;render();break}
+    case 'gup':{const i=state.groups.findIndex(g=>g.id===menuG);if(i>0){const[g]=state.groups.splice(i,1);state.groups.splice(i-1,0,g);saveState()}closeMenu();render();break}
+    case 'gdel':
+      if(!menuArm){menuArm=true;openMenu(menuG);break}
+      state.habits=state.habits.filter(h=>h.group!==menuG);state.groups=state.groups.filter(g=>g.id!==menuG);saveState();closeMenu();render();toast('그룹을 삭제했어요');break;
+    case 'rall': view.rgroup=null; render(); break;
+    case 'close2': layer2.innerHTML=''; break;
+    case 'pickgroup': groupsSheet('pick'); break;
+    case 'pickgoal': goalSheet(); break;
+    case 'gpick': f.group=el.dataset.g; layer2.innerHTML=''; keepScroll(drawSheet); break;
+    case 'gnew': gsAdding=true; drawGroups(); break;
+    case 'gnewok': addGroupFromInput(); break;
+    case 'gmup':{const i=state.groups.findIndex(g=>g.id===el.dataset.g);if(i>0){const[g]=state.groups.splice(i,1);state.groups.splice(i-1,0,g);saveState();render()}drawGroups();break}
+    case 'gmdel':{const id=el.dataset.g;if(gsArm!==id){gsArm=id;drawGroups();break}
+      state.habits=state.habits.filter(h=>h.group!==id);state.groups=state.groups.filter(g=>g.id!==id);saveState();gsArm=null;drawGroups();render();break}
+    case 'gper': gf.per=el.dataset.p||null; drawGoal(); break;
+    case 'gn':{const mx={week:7,month:31,year:365}[gf.per]||1;gf.n=Math.min(mx,Math.max(1,gf.n+ +el.dataset.d));drawGoal();break}
+    case 'gok': f.goal=gf.per?{per:gf.per,n:gf.per==='day'?1:Math.min(gf.n,{week:7,month:31,year:365}[gf.per])}:null; layer2.innerHTML=''; keepScroll(drawSheet); break;
+    case 'tmenu': topMenu(el); break;
+    case 'tgroups': closeMenu(); groupsSheet('manage'); break;
+    case 'thome': closeMenu(); homeSheet(); break;
+    case 'texport':{closeMenu();const all={app:'jaenit-habit',state,months:{}};
+      try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith(LS+'m-'))all.months[k.slice(LS.length+2)]=JSON.parse(localStorage.getItem(k)).days}}catch(_){}
+      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(all)],{type:'application/json'}));a.download='jaenit-habit-'+TODAY+'.json';document.body.appendChild(a);a.click();a.remove();toast('백업 파일을 저장했어요');break}
+    case 'timport':{closeMenu();const i=document.createElement('input');i.type='file';i.accept='.json,application/json';
+      i.onchange=async()=>{try{const d=JSON.parse(await i.files[0].text());if(d.app!=='jaenit-habit')throw 0;state=d.state;lsSet('state',state);for(const m in d.months){lsSet('m-'+m,{days:d.months[m]});months[m]=d.months[m]}render();toast('백업을 불러왔어요')}catch(_){toast('이 파일은 잰잇 해빗 백업이 아니에요')}};i.click();break}
+    case 'review': layer.innerHTML=''; view.screen='review'; view.rref=view.rref||key(new Date(parse(TODAY).getFullYear(),parse(TODAY).getMonth(),1)); window.scrollTo(0,0); render(); break;
+    case 'rprev':{const r=parse(view.rref);view.rref=key(new Date(r.getFullYear(),r.getMonth()-1,1));render();break}
+    case 'rnext':{const r=parse(view.rref);view.rref=key(new Date(r.getFullYear(),r.getMonth()+1,1));render();break}
+  }
+},{capture:true,signal:AC.signal});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(layer2.innerHTML)layer2.innerHTML='';else closeSheet()}},{signal:AC.signal});
+const IC={
+ cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M8 3v3M16 3v3M9 15l2 2 4-4"/></svg>',
+ add:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>',
+ edit:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 17.3V20h2.7l9.9-9.9-2.7-2.7L4 17.3zm15.7-9.6a1 1 0 000-1.4l-2-2a1 1 0 00-1.4 0l-1.6 1.6 2.7 2.7 2.3-.9z"/></svg>',
+ up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
+ trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>'};
+let menuG=null,menuArm=false,menuBtn=null;
+function openMenu(gid,btn){
+  menuG=gid;menuBtn=btn||menuBtn;const n=state.habits.filter(h=>h.group===gid).length,first=state.groups.findIndex(g=>g.id===gid)===0;
+  layer.innerHTML=`<div class="popov" data-a="mclose"></div><div class="pop" id="pop" role="menu">
+    <button role="menuitem" data-a="gcal">${IC.cal}Calendar</button>
+    <button role="menuitem" data-a="gadd">${IC.add}습관 추가</button>
+    <button role="menuitem" data-a="gren">${IC.edit}Edit</button>
+    ${first?'':`<button role="menuitem" data-a="gup">${IC.up}위로 이동</button>`}
+    <button role="menuitem" class="danger ${menuArm?'arm':''}" data-a="gdel">${IC.trash}${menuArm?`습관 ${n}개까지 삭제`:'Trash'}</button></div>`;
+  placePop(menuBtn);
+}
+function closeMenu(){menuG=null;menuArm=false;layer.innerHTML=''}
+function renameSheet(){
+  const g=state.groups.find(x=>x.id===menuG);if(!g)return;const gid=g.id;closeMenu();menuG=gid;
+  layer.innerHTML=`<div class="ov" data-a="close"><div class="sheet" role="dialog" aria-label="그룹 이름"><div class="sh"><button class="ib" data-a="close" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><h2>그룹 이름</h2></div>
+    <div class="sb" style="padding-bottom:110px"><input class="field" id="g-name" maxlength="20" value="${esc(g.name)}" style="text-align:center;font-size:20px;margin-top:12px"></div>
+    <button class="save" data-a="gsave">저장</button></div></div>`;
+  const i=document.getElementById('g-name');i.focus();i.select();
+}
+
+Object.assign(IC,{
+ down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
+ list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6h10M10 12h10M10 18h10M5 4v16M3 6l2-2 2 2M3 18l2 2 2-2"/></svg>',
+ grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3.5" width="15" height="17" rx="2.5"/><path d="M8 8h8M8 12h3M8 16h3M14 12h2v4h-2z"/></svg>',
+ cal2:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 16.5h.01M12 16.5h.01M16 16.5h.01" stroke-width="2.6"/></svg>',
+ phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18h2"/></svg>'});
+const PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+function placePop(btn){
+  const pop=document.getElementById('pop'),r=btn.getBoundingClientRect(),h=pop.offsetHeight;
+  let top=r.bottom+6; if(top+h>innerHeight-16){top=Math.max(16,r.top-6-h);pop.style.transformOrigin='bottom right'}
+  pop.style.top=top+'px'; pop.style.right=Math.max(16,innerWidth-r.right)+'px';
+}
+function topMenu(btn){
+  layer.innerHTML=`<div class="popov" data-a="mclose"></div><div class="pop" id="pop" role="menu">
+    <button role="menuitem" data-a="tgroups">${IC.list}그룹 관리</button>
+    <button role="menuitem" data-a="report">${IC.grid}주간·월간 리포트</button>
+    <button role="menuitem" data-a="texport">${IC.up}기록 백업 받기</button>
+    <button role="menuitem" data-a="timport">${IC.add}백업 불러오기</button>
+    <button role="menuitem" data-a="thome">${IC.phone}홈 화면에 추가</button></div>`;
+  placePop(btn);
+}
+function goalOf(h){const g=h.goal;if(!g)return null;if(typeof g==='number')return{per:'week',n:g};return g}
+const PER={day:'매일',week:'매주',month:'매월',year:'매년'};
+function goalLabel(g){if(!g)return '없음';if(g.per==='day')return '매일 하기';return `${PER[g.per]} ${g.n}회`}
+
+let gsMode=null,gsArm=null,gsAdding=false;
+function groupsSheet(mode){gsMode=mode;gsArm=null;gsAdding=false;drawGroups()}
+function drawGroups(){
+  const pick=gsMode==='pick',L=pick?layer2:layer,cl=pick?'close2':'close';
+  const rows=state.groups.map((g,i)=>pick
+    ?`<button class="gl-row" data-a="gpick" data-g="${g.id}"><span>${esc(g.name)}</span>${f&&f.group===g.id?CHECK:''}</button>`
+    :`<div class="gl-row"><input class="gl-in" data-g="${g.id}" value="${esc(g.name)}" maxlength="20" aria-label="그룹 이름"><button class="gl-b" data-a="gmup" data-g="${g.id}" ${i?'':'disabled'} aria-label="위로 이동">${IC.up}</button><button class="gl-b ${gsArm===g.id?'arm':''}" data-a="gmdel" data-g="${g.id}" aria-label="삭제">${gsArm===g.id?`습관 ${state.habits.filter(h=>h.group===g.id).length}개까지 삭제`:IC.trash}</button></div>`).join('');
+  L.innerHTML=`<div class="ov" data-a="${cl}"><div class="sheet tall" role="dialog" aria-label="그룹">
+    <div class="sh3"><button class="cbtn" data-a="${cl}" aria-label="닫기">${IC.down}</button><h2>Groups</h2><button class="plus" data-a="gnew" aria-label="새 그룹">${PLUS}</button></div>
+    <div class="sb">${gsAdding?`<div class="gl-row"><input class="gl-in" id="gl-new" placeholder="새 그룹 이름" maxlength="20"><button class="gl-b add" data-a="gnewok">추가</button></div>`:''}
+    ${rows||(gsAdding?'':'<p class="hint" style="text-align:center;margin-top:30px">오른쪽 위 + 버튼으로 첫 그룹을 만들어 주세요.</p>')}
+    ${pick?'':'<p class="hint">이름을 눌러 바로 고칠 수 있어요. 그룹을 지우면 안에 있는 습관도 함께 지워져요.</p>'}</div></div></div>`;
+  const ni=document.getElementById('gl-new'); if(ni){ni.focus();ni.addEventListener('keydown',e=>{if(e.key==='Enter')addGroupFromInput()})}
+  L.querySelectorAll('input[data-g]').forEach(i=>i.addEventListener('change',()=>{const g=state.groups.find(x=>x.id===i.dataset.g),v=i.value.trim();if(g&&v){g.name=v;saveState();render()}else if(g)i.value=g.name}));
+}
+function addGroupFromInput(){
+  const i=document.getElementById('gl-new'),v=i&&i.value.trim(); if(!v) return;
+  const g={id:uid(),name:v}; state.groups.push(g); saveState(); gsAdding=false;
+  if(gsMode==='pick'&&f){f.group=g.id;layer2.innerHTML='';keepScroll(drawSheet)} else {drawGroups();render()}
+}
+let gf=null;
+function goalSheet(){gf=f.goal?{...f.goal}:{per:null,n:1};drawGoal()}
+function drawGoal(){
+  const opts=[[null,'없음'],['day','매일'],['week','매주'],['month','매월'],['year','매년']];
+  layer2.innerHTML=`<div class="ov" data-a="close2"><div class="sheet tall" role="dialog" aria-label="목표 주기">
+    <div class="sh3"><button class="cbtn" data-a="close2" aria-label="닫기">${IC.down}</button><h2>Interval</h2><span></span></div>
+    <div class="sb"><div class="opts">${opts.map(([p,l])=>`<button class="opt ${gf.per===p?'on':''}" data-a="gper" data-p="${p||''}">${gf.per===p?CHECK:'<i></i>'}<span>${l}</span></button>`).join('')}</div>
+    ${gf.per&&gf.per!=='day'?`<div class="lbl">횟수</div><div class="row"><input class="field" readonly value="${PER[gf.per]} ${gf.n}회" aria-label="목표 횟수"><div class="step"><button data-a="gn" data-d="-1" aria-label="줄이기">−</button><button data-a="gn" data-d="1" aria-label="늘리기">+</button></div></div>`:''}
+    ${gf.per==='day'?'<p class="hint">표시 요일마다 빠짐없이 체크하는 게 목표예요.</p>':''}</div>
+    <button class="save" data-a="gok">저장</button></div></div>`;
+}
+function homeSheet(){
+  layer.innerHTML=`<div class="ov" data-a="close"><div class="sheet" role="dialog" aria-label="홈 화면에 추가">
+    <div class="sh3"><button class="cbtn" data-a="close" aria-label="닫기">${IC.down}</button><h2>홈 화면에 추가</h2><span></span></div>
+    <div class="sb" style="padding-bottom:40px;line-height:1.75;font-size:16px">
+      <p>Safari로 이 페이지를 연 다음, 아래쪽 <b>공유</b> 버튼 → <b>홈 화면에 추가</b>를 누르면 앱처럼 아이콘으로 열 수 있어요.</p>
+      <p class="hint">기록은 이 기기의 이 브라우저에 저장돼요. 브라우저 데이터를 지우면 기록도 지워지니, 가끔 ••• 메뉴에서 백업을 받아두세요.</p></div></div></div>`;
+}
+
+async function renderReview(){
+  const r=parse(view.rref),y=r.getFullYear(),m=r.getMonth(),ym=`${y}-${pad(m+1)}`;
+  const pd=new Date(y,m-1,1),pym=`${pd.getFullYear()}-${pad(pd.getMonth()+1)}`;
+  await ensureMonths([ym,pym]);
+  const cnt=(h,mk)=>Object.values(months[mk]||{}).filter(v=>(v[h.id]||0)>=target(h)).length;
+  const st=state.habits.map(h=>({h,n:cnt(h,ym),p:cnt(h,pym)})).sort((a,b)=>b.n-a.n);
+  const total=st.reduce((s,x)=>s+x.n,0),diff=total-st.reduce((s,x)=>s+x.p,0);
+  const top=st.filter(x=>x.n>0).slice(0,5),sum=top.reduce((s,x)=>s+x.n,0);
+  let donut='';
+  if(top.length){
+    let at=0;const gap=top.length>1?1.4:0;
+    donut=`<svg class="donut" viewBox="0 0 200 200" role="img" aria-label="많이 한 습관 비율"><g transform="rotate(-90 100 100)">${top.map(x=>{const len=x.n/sum*100;const seg=`<circle cx="100" cy="100" r="72" fill="none" stroke="${x.h.color}" stroke-width="42" pathLength="100" stroke-dasharray="${Math.max(.4,len-gap)} ${100-Math.max(.4,len-gap)}" stroke-dashoffset="${-(at+gap/2)}"/>`;at+=len;return seg}).join('')}</g></svg>
+      <div class="legend">${top.map(x=>`<span><i style="background:${x.h.color}"></i>${esc(x.h.name)}</span>`).join('')}</div>`;
+  }else donut='<p class="hint" style="text-align:center;padding:40px 0">이 달은 아직 체크 기록이 없어요.</p>';
+  const msg=!total&&diff===0?'체크하면 여기 쌓여요.':diff>0?`지난달보다 ${diff}회 더 했어요. 잘하고 있어요!`:diff<0?`지난달보다 ${-diff}회 적어요. 조금만 더 힘내봐요.`:'지난달과 같은 페이스예요.';
+  const dim=new Date(y,m+1,0).getDate(),max=Math.max(1,...st.map(x=>x.n));
+  const isCur=ym===TODAY.slice(0,7),upto=isCur?parse(TODAY).getDate():dim;
+  const goalTxt=x=>{const g=goalOf(x.h);if(!g)return'';let t;
+    if(g.per==='day'){t=0;for(let i=1;i<=upto;i++)if(sched(x.h,`${ym}-${pad(i)}`))t++}
+    else if(g.per==='week')t=Math.round(g.n*dim/7);else if(g.per==='month')t=g.n;else return `${goalLabel(g)} 목표`;
+    return `목표 ${t}회 중 ${x.n}회`};
+  app.innerHTML=`<div class="rtop"><button class="back" data-a="home" aria-label="뒤로"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button></div>
+    <h2 class="rh" >${m+1}월 활동 리뷰</h2>
+    <div class="rs"><span>${y}년</span><button data-a="rprev" aria-label="이전 달">‹</button><button data-a="rnext" aria-label="다음 달"${isCur?' disabled':''}>›</button></div>
+    <div class="rcard" style="margin-top:22px"><h4>TOP ${top.length||''}</h4>${donut}</div>
+    <div class="rcard"><div class="big">${total}</div><p>${msg}</p></div>
+    <div class="sth">Statistics</div>
+    <div class="rcard" style="padding-block:6px">${st.length?st.map(x=>`<div class="st-row"><div class="t"><span>${esc(x.h.name)}</span><small>${goalTxt(x)}</small></div><div class="st-bar"><div class="st-track"><div class="st-fill" style="width:${x.n/max*100}%;background:${x.n?x.h.color:'transparent'}"></div></div><b>${x.n}</b></div></div>`).join(''):'<p class="hint">습관을 추가하면 통계가 보여요.</p>'}</div>`;
+}
+
+/* ---------- boot ---------- */
+(async()=>{
+  const now=parse(TODAY), prev=key(new Date(now.getFullYear(),now.getMonth()-1,1));
+  for(const m of [ymOf(TODAY),ymOf(prev)]){const v=lsGet('m-'+m);months[m]=(v&&v.days)||{}}
+  render();
+  db=null;
+  if(db){
+    const s=await readDoc('state'); if(dirtyState) writeDoc('state',state); else if(s){state={habits:s.habits||[],groups:s.groups||[]};lsSet('state',state)}
+    for(const k in months) delete months[k];
+    await ensureMonths([ymOf(TODAY),ymOf(prev),...Object.keys(dirty)]);
+    for(const m in dirty){months[m]=months[m]||{};for(const k in dirty[m]){if(dirty[m][k])months[m][k]=dirty[m][k];else delete months[m][k]}saveMonth(m)}
+  }
+  dbChecked=true;
+  if(!f) render();
+})();
+})();
+</script>
+</body>
+</html>
